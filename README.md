@@ -6,6 +6,9 @@ Monitor TNT token and balance of Ethereum addresses, and node audit status accor
 Newtonsoft JSON.NET (included)
 ETH addresses with TNT tokens that are acting as TNT nodes
 
+# Release fles
+[v1.0 Release](https://github.com/watcher-hirono/tntbalancemonitor/releases/tag/v1.0)
+
 # Usage
 1. Put all ETH and IP addresses into `address.txt` in the program binary folder.
 (Separate the ETH address and IP address with tab.)
