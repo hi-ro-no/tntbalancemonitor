@@ -15,4 +15,4 @@ ETH addresses with TNT tokens that are acting as TNT nodes
 ![TNT balance monitor screenshot](https://mining.watch/ss/tntbalancemonitor.jpg)
 
 # Link
-!{ETH balance monitor](https://github.com/valiant1x/ethbalancemonitor) Original Source
+[ETH balance monitor](https://github.com/valiant1x/ethbalancemonitor) Original Source
