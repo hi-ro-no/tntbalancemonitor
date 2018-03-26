@@ -89,6 +89,16 @@ namespace TntBalanceMonitor
                 this.NotifyPropertyChanged();
             }
         }
+        float _StartBalTnt;
+        public float StartBalTnt
+        {
+            get { return _StartBalTnt; }
+            set
+            {
+                _StartBalTnt = value;
+                this.NotifyPropertyChanged();
+            }
+        }
         DateTime _LastUpdated;
         public DateTime LastUpdated
         {

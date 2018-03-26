@@ -30,10 +30,16 @@ namespace TntBalanceMonitor
         string strHttp = "http://";
         string strConfig = "/config";
 
+        private const int nNodeTntVolume = 5000;
+        private const int nRewardTntVolume = 6500;
+
         public frmMain()
         {
             InitializeComponent();
-            
+
+            System.Diagnostics.FileVersionInfo ver = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            this.Text = this.Text + " Ver" + ver.FileMajorPart.ToString() + "." + ver.FileMinorPart.ToString() + ver.FileBuildPart.ToString();
+
             if (File.Exists("address.txt"))
             {
                 try
@@ -113,12 +119,17 @@ namespace TntBalanceMonitor
 
                         float newTntBal = jsonResponse.tokens[0].balance / 100000000;
 
-                        if (addr.BalTnt != 0 &&
-                            addr.BalTnt != newTntBal)
-                            AddLogMsg("*** Value changedfor " + addr.Addr + " -- previous: " +
-                                addr.BalTnt + " -- new: " + newTntBal);
+                        if ((addr.BalTnt != 0) && (addr.BalTnt != newTntBal))
+                        {
+                            AddLogMsg("*** Value changedfor " + addr.Addr + " -- previous: " +  addr.BalTnt + " -- new: " + newTntBal);
+                        }
 
+                        if (addr.StartBalTnt == 0)
+                        {
+                            addr.StartBalTnt = newTntBal;
+                        }
                         addr.BalTnt = newTntBal;
+
                         addr.LastUpdated = DateTime.Now;
                     }
 
@@ -172,10 +183,21 @@ namespace TntBalanceMonitor
             if (dgMain.Columns[e.ColumnIndex].Name == "BalTnt")
             {
                 Address addr = Addresses[e.RowIndex];
-                if (addr.BalTnt >= 6000)
+                if ((addr.BalTnt >= nRewardTntVolume) && (addr.StartBalTnt != addr.BalTnt))
                 {
                     e.CellStyle.BackColor = Color.Green;
                     e.CellStyle.ForeColor = Color.WhiteSmoke;
+                }
+                else
+                {
+                    if (addr.BalTnt > nNodeTntVolume)
+                    {
+                        e.CellStyle.ForeColor = Color.Green;
+                    }
+                    else if (addr.BalTnt < nNodeTntVolume)
+                    {
+                        e.CellStyle.ForeColor = Color.Red;
+                    }
                 }
             }
 
