@@ -7,7 +7,7 @@ Newtonsoft JSON.NET (included)
 ETH addresses with TNT tokens that are acting as TNT nodes
 
 # Release files
-[v1.1 Release](https://github.com/watcher-hirono/tntbalancemonitor/releases/tag/v1.1)
+[v1.11 Release](https://github.com/watcher-hirono/tntbalancemonitor/releases/tag/v1.11)
 
 # Usage
 1. Put all ETH and IP addresses into `address.txt` in the program binary folder.
