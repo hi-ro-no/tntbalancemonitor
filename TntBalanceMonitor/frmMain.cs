@@ -117,7 +117,11 @@ namespace TntBalanceMonitor
 
                         addr.BalEth = jsonResponse.ETH.balance;
 
-                        float newTntBal = jsonResponse.tokens[0].balance / 100000000;
+                        float newTntBal = 0;
+                        if (jsonResponse.tokens != null)
+                        {
+                            newTntBal = jsonResponse.tokens[0].balance / 100000000;
+                        }
 
                         if ((addr.BalTnt != 0) && (addr.BalTnt != newTntBal))
                         {
@@ -158,7 +162,7 @@ namespace TntBalanceMonitor
                 
                 dgMain.AutoResizeColumns();
 
-                await Task.Delay(wasFresh ? 15000 : 120000);
+                await Task.Delay(wasFresh ? 10000 : 30000);
             }
         }
 
